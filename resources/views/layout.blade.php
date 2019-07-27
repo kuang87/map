@@ -20,6 +20,10 @@
 <body>
 <div class="container">
 
+    <nav class="navbar navbar-dark bg-dark">
+        <button class="btn btn-sm btn-outline-secondary" type="button">Go</button>
+    </nav>
+
     <div class="row mb-3">
         <div class="col">
             <h1>Карта</h1>
@@ -67,28 +71,23 @@
         </div>
     </div>
 
-</div>
-
-
-<div class="row mt-3 footer-classic context-dark bg-image" style="background: #2d3246;">
-    <div class="col">
-        <div class="row">
-
-            <div class="col-md-4">
-                <p class="text-center">&copy;2019</p>
-            </div>
-
-            <div class="col-md-4 text-center">
-                <h5>Контакты</h5>
-                <dl class="contact-list">
-                    <dt>Адрес:</dt>
-                    <dd>Санкт-Петербург</dd>
-                </dl>
-            </div>
-
+    <div class="row mt-3 footer-classic context-dark bg-image" style="background: #2d3246;">
+        <div class="col-md-4">
+            <p class="text-center">&copy;2019</p>
         </div>
+
+        <div class="col-md-4 text-center">
+            <h5>Контакты</h5>
+            <dl class="contact-list">
+                <dt>Адрес:</dt>
+                <dd>Санкт-Петербург</dd>
+            </dl>
+        </div>
+
     </div>
 </div>
+
+
 
 
 <!-- Bootstrap core JavaScript
