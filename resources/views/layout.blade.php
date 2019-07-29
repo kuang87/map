@@ -18,7 +18,7 @@
 </head>
 
 <body>
-<div class="container">
+<div class="container pt-4">
 
     <nav class="navbar navbar-dark bg-dark">
         <button class="btn btn-sm btn-outline-secondary" type="button">Go</button>
@@ -36,17 +36,17 @@
                 @csrf
                 <div class="form-group">
                     <label for="name">Новая метка:</label>
-                    <input type="text" name="name" class="form-control mb-1" placeholder="Имя" value="{{old('name')}}">
+                    <input type="text" name="name" class="form-control mb-1" id="name" placeholder="Имя" value="{{old('name')}}">
                     <input type="text" name="latitude" class="form-control mb-1" id="latitude" placeholder="Широта" value="{{old('latitude')}}">
                     <input type="text" name="longitude" class="form-control mb-1" id="longitude" placeholder="Долгота" value="{{old('longitude')}}">
-                    <select class="form-control mb-1" name="category">
+                    <select class="form-control mb-1" name="category" id="category">
                         <option value="" disabled selected>Выберите категорию</option>
                         @forelse($categories as $category)
                             <option value="{{$category->id}}">{{$category->title}}</option>
                         @empty
                         @endforelse
                     </select>
-                    <textarea class="form-control" name="note" rows="3" placeholder="Описание">{{old('note')}}</textarea>
+                    <textarea class="form-control" id="note" name="note" rows="3" placeholder="Описание">{{old('note')}}</textarea>
                 </div>
 
                 @if ($errors->any())
@@ -60,8 +60,8 @@
                 @endif
 
                 <hr>
-
                 <button class="btn btn-primary">Создать</button>
+                <button type="button" class="btn btn-dark" id="make">Создать(API)</button>
             </form>
         </div>
 
@@ -93,9 +93,10 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  </body>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
 
 @stack('scripts')
 

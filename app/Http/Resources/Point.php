@@ -18,6 +18,7 @@ class Point extends JsonResource
             'id' => $this->id,
             'category' => $this->category->title ?? '',
             'name' => $this->name,
+            'note' => $this->note->content ?? '',
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'created_at' => $this->created_at,

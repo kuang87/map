@@ -44,13 +44,13 @@ class PointController extends Controller
             'name' => 'required|alpha_dash',
             'latitude' => 'required|numeric',
             'longitude' => 'required|numeric',
-            'category' => 'nullable|exists:categories,id',
+            'category' => 'required|exists:categories,id',
             'note' => 'nullable|alpha_dash',
         ]);
 
         $point = new Point();
         $point->name = $data['name'];
-        $point->category_id = $data['category'] ?? null;
+        $point->category_id = $data['category'];
         $point->latitude = $data['latitude'];
         $point->longitude = $data['longitude'];
         $point->save();

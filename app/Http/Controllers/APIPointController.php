@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Note;
 use App\Point;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,29 @@ class APIPointController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'name' => 'required|alpha_dash',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+            'category' => 'required|exists:categories,id',
+            'note' => 'nullable|alpha_dash',
+        ]);
+
+        $point = new Point();
+        $point->name = $data['name'];
+        $point->category_id = $data['category'];
+        $point->latitude = $data['latitude'];
+        $point->longitude = $data['longitude'];
+        $point->save();
+
+        if ($data['note'] != null){
+            $note = new Note();
+            $note->point_id = $point->id;
+            $note->content = $data['note'];
+            $note->save();
+        }
+
+        return response()->json('SUccesseful');
     }
 
     /**
