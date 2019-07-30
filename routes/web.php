@@ -14,6 +14,3 @@
 Route::get('/', 'PointController@index');
 
 Route::resource('points', 'PointController')->only(['index', 'store']);
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
