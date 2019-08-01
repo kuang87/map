@@ -106,4 +106,10 @@ class APIPointController extends Controller
     {
         //
     }
+
+    public function getPoints()
+    {
+        return response()->json('OK');
+    }
+
 }

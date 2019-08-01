@@ -15,22 +15,23 @@
     <script src="https://api-maps.yandex.ru/2.1/?apikey=b0026182-900c-4327-8e03-6bfb8a604589&lang=ru_RU"
             type="text/javascript">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 
 <body>
-<div class="container pt-4">
+    <div class="container pt-4" id="app">
 
     <nav class="navbar navbar-dark bg-dark">
         <button class="btn btn-sm btn-outline-secondary" type="button">Go</button>
     </nav>
 
-    <div class="row mb-3">
+    <div class="row mt-4">
         <div class="col">
             <h1>Карта</h1>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-md-4">
             <form action="{{action('PointController@store')}}" method="post">
                 @csrf
@@ -63,6 +64,19 @@
                 <button class="btn btn-primary">Создать</button>
                 <button type="button" class="btn btn-dark" id="make">Создать(API)</button>
             </form>
+
+            <div class="row">
+                <div class="col mt-5">
+                    <label>
+                        Поиск
+                        <input type="text" v-model="search">
+                    </label>
+                    <ul v-if="points.length > 0">
+                        <li @click="mapCenter(point.latitude, point.longitude)" @mouseover="highlightOn" @mouseleave="highlightOff" v-for="point in points" :key="point.id" v-text="point.name"></li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
 
         <div class="col-md-8 pt-4">
@@ -87,17 +101,14 @@
     </div>
 </div>
 
-
-
-
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    @stack('scripts')
+
 </body>
-
-@stack('scripts')
-
 </html>

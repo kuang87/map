@@ -98,3 +98,41 @@
         })
     </script>
 @endpush
+
+@push('scripts')
+    <script type="text/javascript">
+        var app = new Vue({
+            el: '#app',
+            data: {
+                search: '',
+                points: [],
+            },
+            watch: {
+                search: function() {
+                    this.search.length > 1 ? this.getPoints() : this.points = []
+                }
+            },
+            methods: {
+                getPoints: function() {
+                    $.ajax({
+                        url: '{{action('FindController@find')}}',
+                        dataType: 'json',
+                        data: {name: app.search},
+                        success: function(json) {
+                            app.points = json.data;
+                        }
+                    });
+                },
+                mapCenter: function(lat, lon) {
+                    myMap.setCenter([lat,lon]);
+                },
+                highlightOn: function (event) {
+                    event.target.style.background = 'yellow';
+                },
+                highlightOff: function (event) {
+                    event.target.style.background = 'none';
+                }
+            }
+        })
+    </script>
+@endpush
