@@ -18,3 +18,5 @@ use Illuminate\Http\Request;
 //});
 
 Route::resource('points', 'APIPointController')->only(['index', 'store']);
+
+Route::get('points/find', 'FindController@find');
