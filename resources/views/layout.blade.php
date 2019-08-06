@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,20 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Карта</title>
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jscrypt.js') }}" defer></script>
+    {{--    <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>--}}
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=b0026182-900c-4327-8e03-6bfb8a604589&lang=ru_RU"
+            type="text/javascript">
+    </script>
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="{{asset('css/template.css')}}" rel="stylesheet">
 
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=b0026182-900c-4327-8e03-6bfb8a604589&lang=ru_RU"
-            type="text/javascript">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container pt-4" id="app">
+<div class="container pt-4" id="app">
 
     <nav class="navbar navbar-dark bg-dark">
         <button class="btn btn-sm btn-outline-secondary" type="button">Go</button>
@@ -64,19 +73,7 @@
                 <button class="btn btn-primary">Создать</button>
                 <button type="button" class="btn btn-dark" id="make">Создать(API)</button>
             </form>
-
-            <div class="row">
-                <div class="col mt-5">
-                    <label>
-                        Поиск
-                        <input type="text" v-model="search">
-                    </label>
-                    <ul v-if="points.length > 0">
-                        <li @click="mapCenter(point.latitude, point.longitude)" @mouseover="highlightOn" @mouseleave="highlightOff" v-for="point in points" :key="point.id" v-text="point.name"></li>
-                    </ul>
-                </div>
-            </div>
-
+            <find-component></find-component>
         </div>
 
         <div class="col-md-8 pt-4">
@@ -101,14 +98,6 @@
     </div>
 </div>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-    @stack('scripts')
-
+@stack('scripts')
 </body>
 </html>
